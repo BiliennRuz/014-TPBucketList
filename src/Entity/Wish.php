@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\WishRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=WishRepository::class)
@@ -35,7 +36,7 @@ class Wish
      *  min=2,
      *  max=50,
      *  minMessage="Trop court",
-     *  maxMessage="Trop long"
+     *  maxMessage="Trop long")
      * @ORM\Column(type="string", length=50)
      */
     private $author;

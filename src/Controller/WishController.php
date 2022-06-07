@@ -33,5 +33,13 @@ class WishController extends AbstractController
         return $this->render('wish/detail.html.twig',["wish"=>$wish]);
     }    
 
+    /**
+     * @Route("/add", name="_add")
+     */
+    public function add(): Response
+    {
+        return $this->render('wish/ajout.html.twig');
+    }
+
 
 }

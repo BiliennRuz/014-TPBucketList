@@ -18,16 +18,24 @@ class Wish
     private $id;
 
     /**
+     * @Assert\NotBlank(message="ce champs ne peut pas etre vide!")
      * @ORM\Column(type="string", length=250)
      */
     private $title;
 
     /**
+     * @Assert\NotBlank(message="ce champs ne peut pas etre vide!")
      * @ORM\Column(type="text")
      */
     private $description;
 
     /**
+     * @Assert\NotBlank(message="ce champs ne peut pas etre vide!")
+     * @Assert\Length(
+     *  min=2,
+     *  max=50,
+     *  minMessage="Trop court",
+     *  maxMessage="Trop long"
      * @ORM\Column(type="string", length=50)
      */
     private $author;

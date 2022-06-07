@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% block title %} Ajout {% endblock %}
+
+{% block main %}
+<div class="inside">
+    <div class="site-title">
+        <h1> Ajout wish</h1>
+    </div>
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            {{ form_start(wishForm) }}
+                {{ form_row(wishForm.title) }}
+                {{ form_row(wishForm.description) }}
+                {{ form_row(wishForm.author) }}
+                <button type="submit" class="btn btn-primary" >Ajouter</button>
+            {{ form_end(wishForm) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

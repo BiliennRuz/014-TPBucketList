@@ -31,11 +31,13 @@ class WishController extends AbstractController
     public function new(Request $request, WishRepository $wishRepository): Response
     {
         $wish = new Wish();
-        $form = $this->createForm(Wish1Type::class, $wish);
+        $form = $this->createForm(WishType::class, $wish);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $wishRepository->add($wish, true);
+
 
             return $this->redirectToRoute('app_wish_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -61,7 +63,7 @@ class WishController extends AbstractController
      */
     public function edit(Request $request, Wish $wish, WishRepository $wishRepository): Response
     {
-        $form = $this->createForm(Wish1Type::class, $wish);
+        $form = $this->createForm(WishType::class, $wish);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

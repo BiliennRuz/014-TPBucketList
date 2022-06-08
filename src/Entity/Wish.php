@@ -20,6 +20,11 @@ class Wish
 
     /**
      * @Assert\NotBlank(message="ce champs ne peut pas etre vide!")
+     * @Assert\Length(
+     *  min=2,
+     *  max=250,
+     *  minMessage="Trop court",
+     *  maxMessage="Trop long")
      * @ORM\Column(type="string", length=250)
      */
     private $title;
@@ -50,6 +55,18 @@ class Wish
      * @ORM\Column(type="datetime")
      */
     private $dateCreated;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="wishes", fetch="EAGER")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    public function __construct()
+    {
+        $this->setIsPublished(true);
+        $this->setDateCreated(new \DateTime());
+    }
 
     public function getId(): ?int
     {
@@ -112,6 +129,18 @@ class Wish
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
         $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

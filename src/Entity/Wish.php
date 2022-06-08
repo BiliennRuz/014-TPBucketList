@@ -57,7 +57,7 @@ class Wish
     private $dateCreated;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="wishes", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="wishes", fetch="LAZY")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;

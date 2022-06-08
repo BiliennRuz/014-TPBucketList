@@ -39,6 +39,34 @@ class WishRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllJoinedToCategory(): ?Wish
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT w, c
+            FROM App\Entity\Wish w
+            INNER JOIN App\Entity\Category c
+            ON w.category = c.id'
+        );
+
+        return $query->getResult();
+    }
+    
+    public function findListIdeasWithCategories()
+    {
+        return $this->createQueryBuilder('i')
+            ->addSelect('c')
+            ->where('i.isPublished = true')
+            ->join('i.category', 'c')
+            ->orderBy('i.dateCreated', 'DESC')
+            ->setMaxResults(50)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
 //    /**
 //     * @return Wish[] Returns an array of Wish objects
 //     */

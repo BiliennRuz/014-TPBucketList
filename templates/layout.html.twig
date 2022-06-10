@@ -20,7 +20,14 @@
                     <ul>
                         <li><a href="{{ path('app_wish_index') }}">Home</a></li>
                         <li><a href="{{ path('app_wish_index') }}">Liste wish</a></li>
-                        <li><a href="{{ path('app_wish_new') }}">Ajouter wish</a></li>
+                        {% if app.user %}
+                            <li><a href="{{ path('app_wish_new') }}">Ajouter wish</a></li>
+                            <li><a href="{{ path('app_logout') }}">Deconnexion - Hello {{ app.user.userIdentifier }}</a></li>
+                        {% else %}
+                            <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                            <li><a href="{{ path('app_register') }}">Inscription</a></li>
+                        {% endif %}
+
                     </ul>
                 </nav>
             </header>
